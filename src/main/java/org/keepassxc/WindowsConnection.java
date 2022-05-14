@@ -66,7 +66,15 @@ public class WindowsConnection extends Connection {
         var raw = new StringBuilder();
         long position = 0;
         Future<Integer> operation = pipe.read(buffer, position);
-        while (!operation.isDone());
+        while (!operation.isDone())
+        {
+            try {
+                Thread.sleep(SLOW_QUEUE_PROCESSING_MS);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
         buffer.flip();
         charsetDecoder.decode(buffer, charBuffer, true);
         charBuffer.flip();

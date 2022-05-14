@@ -35,7 +35,7 @@ public abstract class Connection implements AutoCloseable {
     final ExecutorService executorService = Executors.newFixedThreadPool(12);
     protected MessagePublisher messagePublisher;
     private final long QUEUE_CHECKING_INTERVAL_MS = 100;
-    private final long SLOW_QUEUE_PROCESSING_MS = 500;
+    protected final long SLOW_QUEUE_PROCESSING_MS = 500;
     private final ConcurrentLinkedQueue<JSONObject> queue = new ConcurrentLinkedQueue<>();
 
     private final int MAX_ERROR_COUNT = 4;
